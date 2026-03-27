@@ -1,0 +1,108 @@
+/* 牌阵布局样式 */
+
+.spread-layout {
+  width: 100%;
+  padding: 20rpx;
+  box-sizing: border-box;
+}
+
+/* 单张牌布局 */
+.layout-single {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 500rpx;
+}
+
+/* 横向排列布局 */
+.layout-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30rpx;
+  flex-wrap: wrap;
+  padding: 40rpx 20rpx;
+}
+
+/* 凯尔特十字布局 */
+.layout-celtic-cross {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 40rpx;
+  padding: 20rpx;
+}
+
+.cross-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cross-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10rpx;
+}
+
+.cross-horizontal {
+  display: flex;
+  align-items: center;
+  gap: 10rpx;
+}
+
+.cross-pos.horizontal {
+  transform: rotate(90deg);
+}
+
+.staff-section {
+  display: flex;
+  flex-direction: column;
+  gap: 15rpx;
+  padding-top: 20rpx;
+}
+
+/* 关系牌阵布局 */
+.layout-relationship {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30rpx;
+}
+
+.relationship-row {
+  display: flex;
+  justify-content: center;
+  gap: 60rpx;
+}
+
+.relationship-center {
+  margin: 20rpx 0;
+}
+
+.relationship-bottom {
+  display: flex;
+  justify-content: center;
+  gap: 20rpx;
+  flex-wrap: wrap;
+}
+
+/* 响应式调整 */
+@media (max-width: 600rpx) {
+  .layout-celtic-cross {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .staff-section {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding-top: 0;
+  }
+  
+  .relationship-row {
+    gap: 30rpx;
+  }
+}

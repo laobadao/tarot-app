@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "抽牌",
+  "usingComponents": {
+    "spread-layout": "/components/spread-layout/spread-layout"
+  }
+}

@@ -1,0 +1,71 @@
+<view class="tarot-card-container {{size}} {{animationClass}}" 
+      style="{{faceDown ? '' : '--card-rotation: ' + (card.isReversed ? '180deg' : '0deg')}}"
+      bindtap="onTap">
+  
+  <!-- 位置标签 -->
+  <view wx:if="{{showLabel && positionLabel}}" class="position-label">
+    {{positionLabel}}
+  </view>
+  
+  <!-- 牌面容器 -->
+  <view class="card-inner {{flipped ? 'flipped' : ''}}">
+    <!-- 牌背 -->
+    <view class="card-face card-back">
+      <view class="back-pattern">
+        <view class="center-symbol">🔮</view>
+        <view class="corner top-left">✦</view>
+        <view class="corner top-right">✦</view>
+        <view class="corner bottom-left">✦</view>
+        <view class="corner bottom-right">✦</view>
+        <view class="border-pattern"></view>
+      </view>
+    </view>
+    
+    <!-- 牌面 -->
+    <view class="card-face card-front {{card.isReversed ? 'reversed' : ''}}">
+      <!-- 牌面顶部：数字和名称 -->
+      <view class="card-header">
+        <text class="card-number">{{card.number || 0}}</text>
+        <text class="card-suit" wx:if="{{card.suit}}">{{card.suit}}</text>
+      </view>
+      
+      <!-- 牌面中央：图案区域 -->
+      <view class="card-art">
+        <view class="symbol-container">
+          <text class="major-symbol" wx:if="{{!card.suit}}">{{getMajorSymbol(card.number)}}</text>
+          <text class="suit-symbol" wx:else>{{getSuitSymbol(card.suit)}}</text>
+        </view>
+        <view class="card-name">{{card.name}}</view>
+      </view>
+      
+      <!-- 牌面底部：元素和关键词 -->
+      <view class="card-footer">
+        <text class="element" wx:if="{{card.element}}">{{card.element}}</text>
+        <view class="keywords" wx:if="{{card.keywords}}">
+          <text wx:for="{{card.keywords.slice(0,2)}}" wx:key="index" class="keyword">{{item}}</text>
+        </view>
+      </view>
+      
+      <!-- 逆位标识 -->
+      <view wx:if="{{card.isReversed}}" class="reversed-badge">逆位</view>
+    </view>
+  </view>
+</view>
+
+<wxs module="util">
+module.exports = {
+  getMajorSymbol: function(number) {
+    var symbols = ['🃏', '✨', '🌙', '👑', '⚔️', '🏛️', '💕', '🏆', '🦁', '🔍', '🎡', '⚖️', '🙃', '💀', '🌊', '👿', '🌩️', '⭐', '🌙', '☀️', '🎺', '🌍'];
+    return symbols[number] || '✨';
+  },
+  getSuitSymbol: function(suit) {
+    var symbols = {
+      '权杖': '🔥',
+      '圣杯': '🏆',
+      '宝剑': '⚔️',
+      '星币': '💰'
+    };
+    return symbols[suit] || '✨';
+  }
+};
+</wxs>

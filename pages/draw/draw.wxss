@@ -1,0 +1,195 @@
+/* 抽牌页面样式 */
+.container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  text-align: center;
+  padding: 40rpx;
+}
+
+.spread-title {
+  display: block;
+  font-size: 40rpx;
+  color: var(--accent-gold);
+  font-weight: bold;
+  margin-bottom: 16rpx;
+}
+
+.spread-desc {
+  display: block;
+  font-size: 26rpx;
+  color: var(--text-secondary);
+}
+
+/* 问题输入 */
+.question-section {
+  margin: 20rpx 30rpx;
+  padding: 30rpx;
+}
+
+.question-label {
+  display: block;
+  font-size: 28rpx;
+  color: var(--accent-gold);
+  margin-bottom: 20rpx;
+}
+
+.question-input {
+  width: 100%;
+  min-height: 100rpx;
+  padding: 20rpx;
+  background: rgba(26, 10, 46, 0.5);
+  border: 2rpx solid var(--border-color);
+  border-radius: 16rpx;
+  color: var(--text-primary);
+  font-size: 28rpx;
+}
+
+/* 洗牌动画 */
+.shuffle-area {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.shuffle-text {
+  font-size: 36rpx;
+  color: var(--accent-gold);
+  margin-bottom: 60rpx;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+.deck-animation {
+  position: relative;
+  width: 300rpx;
+  height: 400rpx;
+}
+
+.card-deck {
+  position: absolute;
+  width: 180rpx;
+  height: 300rpx;
+  background: linear-gradient(135deg, #1a0a2e, #2d1b4e);
+  border: 4rpx solid #d4af37;
+  border-radius: 16rpx;
+  box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.4);
+}
+
+.deck-1 {
+  top: 50rpx;
+  left: 60rpx;
+  animation: shuffle1 1s ease-in-out infinite;
+}
+
+.deck-2 {
+  top: 70rpx;
+  left: 80rpx;
+  animation: shuffle2 1s ease-in-out infinite 0.2s;
+}
+
+.deck-3 {
+  top: 50rpx;
+  left: 100rpx;
+  animation: shuffle3 1s ease-in-out infinite 0.4s;
+}
+
+@keyframes shuffle1 {
+  0%, 100% { transform: translateX(0) rotate(0); }
+  50% { transform: translateX(-30rpx) rotate(-5deg); }
+}
+
+@keyframes shuffle2 {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-20rpx); }
+}
+
+@keyframes shuffle3 {
+  0%, 100% { transform: translateX(0) rotate(0); }
+  50% { transform: translateX(30rpx) rotate(5deg); }
+}
+
+.mystic-symbols {
+  display: flex;
+  gap: 40rpx;
+  margin-top: 60rpx;
+}
+
+.symbol {
+  font-size: 48rpx;
+  color: var(--accent-gold);
+  opacity: 0.6;
+}
+
+.symbol-1 { animation: twinkle 2s infinite; }
+.symbol-2 { animation: twinkle 2.5s infinite 0.3s; }
+.symbol-3 { animation: twinkle 3s infinite 0.6s; }
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+/* 抽牌区域 */
+.draw-area {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 20rpx;
+}
+
+.step-hint {
+  text-align: center;
+  padding: 30rpx;
+}
+
+.hint-text {
+  display: block;
+  font-size: 32rpx;
+  color: var(--text-primary);
+  margin-bottom: 10rpx;
+}
+
+.hint-position {
+  display: block;
+  font-size: 26rpx;
+  color: var(--accent-gold);
+}
+
+.action-area {
+  padding: 40rpx;
+  text-align: center;
+}
+
+/* 开始按钮 */
+.start-area {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 40rpx;
+}
+
+.mystic-btn.large {
+  font-size: 36rpx;
+  padding: 40rpx 80rpx;
+  margin-bottom: 30rpx;
+}
+
+.back-btn {
+  background: transparent;
+  color: var(--text-secondary);
+  border: 2rpx solid var(--border-color);
+  border-radius: 50rpx;
+  padding: 20rpx 40rpx;
+  font-size: 28rpx;
+}
+
+.back-btn::after {
+  border: none;
+}

@@ -1,0 +1,49 @@
+<view class="container mystic-bg">
+  <!-- 头部 -->
+  <view class="header">
+    <text class="page-title">历史记录</text>
+    <text class="page-subtitle">查看过去的占卜</text>
+  </view>
+
+  <!-- 空状态 -->
+  <view wx:if="{{isEmpty}}" class="empty-state">
+    <text class="empty-icon">🔮</text>
+    <text class="empty-text">还没有占卜记录</text>
+    <text class="empty-hint">去首页开始你的第一次占卜吧</text>
+    <button class="mystic-btn" bindtap="goHome">开始占卜</button>
+  </view>
+
+  <!-- 历史列表 -->
+  <view wx:else class="history-list">
+    <view class="list-header">
+      <text class="list-count">共 {{history.length}} 条记录</text>
+      <text class="clear-btn" bindtap="clearHistory">清空</text>
+    </view>
+
+    <view 
+      class="history-item card-container" 
+      wx:for="{{history}}" 
+      wx:key="timestamp"
+    >
+      <view class="item-header">
+        <text class="item-spread">{{item.spreadName}}</text>
+        <text class="item-time">{{item.time}}</text>
+      </view>
+      
+      <view wx:if="{{item.question}}" class="item-question">
+        问：{{item.question}}
+      </view>
+      
+      <view class="item-cards">
+        <text wx:for="{{item.cards}}" wx:key="id" class="card-tag">
+          {{item.name}} {{item.isReversed ? '逆' : '正'}}
+        </text>
+      </view>
+      
+      <view class="item-actions">
+        <text class="action-btn" data-index="{{index}}" bindtap="viewDetail">详情</text>
+        <text class="action-btn delete" data-index="{{index}}" bindtap="deleteItem">删除</text>
+      </view>
+    </view>
+  </view>
+</view>

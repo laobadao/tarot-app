@@ -1,0 +1,71 @@
+<view class="container mystic-bg">
+  <!-- 头部 -->
+  <view class="header">
+    <text class="spread-title">{{spread.name}}</text>
+    <text class="spread-desc">{{spread.description}}</text>
+  </view>
+
+  <!-- 问题输入 -->
+  <view wx:if="{{showQuestionInput && !isDrawing}}" class="question-section card-container">
+    <text class="question-label">你的问题（可选）</text>
+    <textarea 
+      class="question-input"
+      placeholder="输入你想探索的问题..."
+      value="{{question}}"
+      bindinput="onQuestionInput"
+      maxlength="200"
+      auto-height
+    />
+  </view>
+
+  <!-- 洗牌动画 -->
+  <view wx:if="{{isShuffling}}" class="shuffle-area">
+    <view class="shuffle-text">正在洗牌...</view>
+    <view class="deck-animation">
+      <view class="card-deck deck-1"></view>
+      <view class="card-deck deck-2"></view>
+      <view class="card-deck deck-3"></view>
+    </view>
+    <view class="mystic-symbols">
+      <text class="symbol symbol-1">☽</text>
+      <text class="symbol symbol-2">✧</text>
+      <text class="symbol symbol-3">☆</text>
+    </view>
+  </view>
+
+  <!-- 抽牌区域 -->
+  <view wx:if="{{isDrawing && cards.length > 0}}" class="draw-area">
+    <!-- 提示文字 -->
+    <view wx:if="{{currentStep < cards.length}}" class="step-hint">
+      <text class="hint-text">点击翻开第 {{currentStep + 1}} 张牌</text>
+      <text class="hint-position" wx:if="{{spread.positions[currentStep]}}">{{spread.positions[currentStep].name}}</text>
+    </view>
+    
+    <!-- 牌阵布局 -->
+    <spread-layout
+      spread-type="{{spreadType}}"
+      cards="{{cards}}"
+      revealed="{{currentStep >= cards.length}}"
+      current-step="{{currentStep}}"
+      bind:cardtap="onCardTap"
+    />
+    
+    <!-- 下一步按钮 -->
+    <view wx:if="{{currentStep < cards.length}}" class="action-area">
+      <button class="mystic-btn" bindtap="revealNext">翻开下一张</button>
+    </view>
+    
+    <!-- 查看解读按钮 -->
+    <view wx:if="{{currentStep >= cards.length}}" class="action-area">
+      <button class="mystic-btn" bindtap="goToResult">查看解读</button>
+    </view>
+  </view>
+
+  <!-- 开始按钮 -->
+  <view wx:if="{{!isDrawing && !isShuffling}}" class="start-area">
+    <button class="mystic-btn large" bindtap="startShuffle">
+      开始占卜
+    </button>
+    <button class="back-btn" bindtap="goBack">返回选择</button>
+  </view>
+</view>

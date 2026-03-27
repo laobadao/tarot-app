@@ -1,0 +1,194 @@
+<view class="spread-layout {{layoutClass}}">
+  <!-- 单张牌布局 -->
+  <view wx:if="{{layoutClass === 'single'}}" class="layout-single">
+    <tarot-card 
+      wx:for="{{cards}}" 
+      wx:key="index"
+      card="{{item}}" 
+      faceDown="{{!revealed && currentStep < index}}"
+      size="large"
+      clickable="{{!revealed || currentStep === index}}"
+      showLabel="{{true}}"
+      positionLabel="{{positions[index].name}}"
+      data-index="{{index}}"
+      bind:tap="onCardTap"
+      bind:flip="onCardFlip"
+    />
+  </view>
+
+  <!-- 横向排列布局 -->
+  <view wx:if="{{layoutClass === 'row'}}" class="layout-row">
+    <tarot-card 
+      wx:for="{{cards}}" 
+      wx:key="index"
+      card="{{item}}" 
+      faceDown="{{!revealed && currentStep < index}}"
+      size="medium"
+      clickable="{{!revealed || currentStep === index}}"
+      showLabel="{{true}}"
+      positionLabel="{{positions[index].name}}"
+      data-index="{{index}}"
+      bind:tap="onCardTap"
+      bind:flip="onCardFlip"
+    />
+  </view>
+
+  <!-- 凯尔特十字布局 -->
+  <view wx:if="{{layoutClass === 'celticCross'}}" class="layout-celtic-cross">
+    <!-- 左侧十字部分 -->
+    <view class="cross-section">
+      <!-- 位置5: 过去 -->
+      <view class="cross-pos pos-5">
+        <tarot-card 
+          card="{{cards[4]}}" 
+          faceDown="{{!revealed && currentStep < 4}}"
+          size="small"
+          clickable="{{!revealed || currentStep === 4}}"
+          showLabel="{{true}}"
+          positionLabel="{{positions[4].name}}"
+          data-index="4"
+          bind:tap="onCardTap"
+          bind:flip="onCardFlip"
+        />
+      </view>
+      
+      <!-- 中间十字 -->
+      <view class="cross-center">
+        <!-- 位置3: 根基 -->
+        <view class="cross-pos pos-3">
+          <tarot-card 
+            card="{{cards[2]}}" 
+            faceDown="{{!revealed && currentStep < 2}}"
+            size="small"
+            clickable="{{!revealed || currentStep === 2}}"
+            showLabel="{{true}}"
+            positionLabel="{{positions[2].name}}"
+            data-index="2"
+            bind:tap="onCardTap"
+            bind:flip="onCardFlip"
+          />
+        </view>
+        
+        <view class="cross-horizontal">
+          <!-- 位置2: 阻碍（横放） -->
+          <view class="cross-pos pos-2 horizontal">
+            <tarot-card 
+              card="{{cards[1]}}" 
+              faceDown="{{!revealed && currentStep < 1}}"
+              size="small"
+              clickable="{{!revealed || currentStep === 1}}"
+              showLabel="{{true}}"
+              positionLabel="{{positions[1].name}}"
+              data-index="1"
+              bind:tap="onCardTap"
+              bind:flip="onCardFlip"
+            />
+          </view>
+          
+          <!-- 位置1: 现状 -->
+          <view class="cross-pos pos-1">
+            <tarot-card 
+              card="{{cards[0]}}" 
+              faceDown="{{!revealed && currentStep < 0}}"
+              size="small"
+              clickable="{{!revealed || currentStep === 0}}"
+              showLabel="{{true}}"
+              positionLabel="{{positions[0].name}}"
+              data-index="0"
+              bind:tap="onCardTap"
+              bind:flip="onCardFlip"
+            />
+          </view>
+        </view>
+        
+        <!-- 位置4: 未来 -->
+        <view class="cross-pos pos-4">
+          <tarot-card 
+            card="{{cards[3]}}" 
+            faceDown="{{!revealed && currentStep < 3}}"
+            size="small"
+            clickable="{{!revealed || currentStep === 3}}"
+            showLabel="{{true}}"
+            positionLabel="{{positions[3].name}}"
+            data-index="3"
+            bind:tap="onCardTap"
+            bind:flip="onCardFlip"
+          />
+        </view>
+      </view>
+    </view>
+    
+    <!-- 右侧竖列 -->
+    <view class="staff-section">
+      <tarot-card 
+        wx:for="{{[cards[5], cards[6], cards[7], cards[8], cards[9]]}}" 
+        wx:key="index"
+        card="{{item}}" 
+        faceDown="{{!revealed && currentStep < (index + 5)}}"
+        size="small"
+        clickable="{{!revealed || currentStep === (index + 5)}}"
+        showLabel="{{true}}"
+        positionLabel="{{positions[index + 5].name}}"
+        data-index="{{index + 5}}"
+        bind:tap="onCardTap"
+        bind:flip="onCardFlip"
+      />
+    </view>
+  </view>
+
+  <!-- 关系牌阵布局 -->
+  <view wx:if="{{layoutClass === 'relationship'}}" class="layout-relationship">
+    <view class="relationship-row">
+      <tarot-card 
+        card="{{cards[0]}}" 
+        faceDown="{{!revealed && currentStep < 0}}"
+        size="medium"
+        clickable="{{!revealed || currentStep === 0}}"
+        showLabel="{{true}}"
+        positionLabel="{{positions[0].name}}"
+        data-index="0"
+        bind:tap="onCardTap"
+        bind:flip="onCardFlip"
+      />
+      <tarot-card 
+        card="{{cards[1]}}" 
+        faceDown="{{!revealed && currentStep < 1}}"
+        size="medium"
+        clickable="{{!revealed || currentStep === 1}}"
+        showLabel="{{true}}"
+        positionLabel="{{positions[1].name}}"
+        data-index="1"
+        bind:tap="onCardTap"
+        bind:flip="onCardFlip"
+      />
+    </view>
+    <view class="relationship-center">
+      <tarot-card 
+        card="{{cards[2]}}" 
+        faceDown="{{!revealed && currentStep < 2}}"
+        size="medium"
+        clickable="{{!revealed || currentStep === 2}}"
+        showLabel="{{true}}"
+        positionLabel="{{positions[2].name}}"
+        data-index="2"
+        bind:tap="onCardTap"
+        bind:flip="onCardFlip"
+      />
+    </view>
+    <view class="relationship-bottom">
+      <tarot-card 
+        wx:for="{{[cards[3], cards[4], cards[5], cards[6]]}}" 
+        wx:key="index"
+        card="{{item}}" 
+        faceDown="{{!revealed && currentStep < (index + 3)}}"
+        size="small"
+        clickable="{{!revealed || currentStep === (index + 3)}}"
+        showLabel="{{true}}"
+        positionLabel="{{positions[index + 3].name}}"
+        data-index="{{index + 3}}"
+        bind:tap="onCardTap"
+        bind:flip="onCardFlip"
+      />
+    </view>
+  </view>
+</view>

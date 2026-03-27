@@ -1,0 +1,266 @@
+/* 结果页样式 */
+.container {
+  min-height: 100vh;
+  padding-bottom: 120rpx;
+}
+
+.header {
+  text-align: center;
+  padding: 40rpx 30rpx;
+}
+
+.spread-name {
+  display: block;
+  font-size: 40rpx;
+  color: var(--accent-gold);
+  font-weight: bold;
+  margin-bottom: 10rpx;
+}
+
+.reading-time {
+  display: block;
+  font-size: 24rpx;
+  color: var(--text-secondary);
+  margin-bottom: 20rpx;
+}
+
+.question {
+  display: block;
+  font-size: 28rpx;
+  color: var(--text-primary);
+  font-style: italic;
+}
+
+/* 牌面展示 */
+.cards-section {
+  padding: 20rpx 0;
+}
+
+.section-title {
+  display: block;
+  font-size: 32rpx;
+  color: var(--accent-gold);
+  text-align: center;
+  margin-bottom: 20rpx;
+  font-weight: bold;
+}
+
+.cards-scroll {
+  width: 100%;
+  white-space: nowrap;
+}
+
+.cards-row {
+  display: inline-flex;
+  gap: 20rpx;
+  padding: 0 30rpx;
+}
+
+.card-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10rpx;
+}
+
+.card-mini {
+  width: 140rpx;
+  height: 200rpx;
+  background: linear-gradient(180deg, #f5f0e6, #e8dfd1);
+  border: 3rpx solid var(--accent-gold);
+  border-radius: 12rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 16rpx;
+  box-sizing: border-box;
+}
+
+.card-mini.reversed {
+  transform: rotate(180deg);
+}
+
+.card-mini .card-name {
+  font-size: 22rpx;
+  color: #2d1b4e;
+  text-align: center;
+  line-height: 1.3;
+  font-weight: bold;
+}
+
+.card-mini .card-pos {
+  font-size: 18rpx;
+  color: #5a4a3a;
+  margin-top: 8rpx;
+}
+
+.card-status {
+  font-size: 20rpx;
+  color: var(--text-secondary);
+}
+
+/* 解读区域 */
+.interpretation-section {
+  margin: 20rpx 30rpx;
+  padding: 30rpx;
+}
+
+.loading-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 60rpx 0;
+}
+
+.loading-spinner {
+  width: 60rpx;
+  height: 60rpx;
+  border: 4rpx solid var(--border-color);
+  border-top-color: var(--accent-gold);
+  border-radius: 50%;
+  animation: rotate 1s linear infinite;
+  margin-bottom: 20rpx;
+}
+
+.loading-text {
+  font-size: 26rpx;
+  color: var(--text-secondary);
+}
+
+.interpretation-content {
+  font-size: 28rpx;
+  color: var(--text-primary);
+  line-height: 1.8;
+}
+
+.interpretation-content h2 {
+  color: var(--accent-gold);
+  font-size: 32rpx;
+  margin: 30rpx 0 16rpx;
+}
+
+.interpretation-content h3 {
+  color: var(--accent-gold);
+  font-size: 28rpx;
+  margin: 24rpx 0 12rpx;
+}
+
+.interpretation-content p {
+  margin-bottom: 20rpx;
+}
+
+.interpretation-content strong {
+  color: var(--accent-gold);
+}
+
+/* 操作按钮 */
+.action-buttons {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  gap: 20rpx;
+  padding: 20rpx 30rpx;
+  padding-bottom: calc(20rpx + env(safe-area-inset-bottom));
+  background: linear-gradient(180deg, transparent, #1a0a2e);
+}
+
+.share-btn {
+  flex: 1;
+  background: transparent;
+  color: var(--accent-gold);
+  border: 2rpx solid var(--accent-gold);
+  border-radius: 50rpx;
+  font-size: 28rpx;
+}
+
+.share-btn::after {
+  border: none;
+}
+
+/* 弹窗 */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  width: 90%;
+  max-height: 80vh;
+  overflow-y: auto;
+  margin: 40rpx;
+}
+
+.modal-header {
+  text-align: center;
+  margin-bottom: 30rpx;
+}
+
+.modal-title {
+  display: block;
+  font-size: 36rpx;
+  color: var(--accent-gold);
+  font-weight: bold;
+  margin-bottom: 10rpx;
+}
+
+.modal-pos {
+  font-size: 26rpx;
+  color: var(--text-secondary);
+}
+
+.modal-body {
+  margin-bottom: 30rpx;
+}
+
+.detail-label {
+  display: block;
+  font-size: 24rpx;
+  color: var(--accent-gold);
+  margin: 20rpx 0 10rpx;
+}
+
+.detail-text {
+  display: block;
+  font-size: 26rpx;
+  color: var(--text-primary);
+  line-height: 1.6;
+}
+
+.keywords {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10rpx;
+}
+
+.keyword {
+  font-size: 22rpx;
+  color: var(--text-primary);
+  background: rgba(212, 175, 55, 0.2);
+  padding: 8rpx 16rpx;
+  border-radius: 20rpx;
+}
+
+.modal-close {
+  width: 100%;
+  background: transparent;
+  color: var(--accent-gold);
+  border: 2rpx solid var(--accent-gold);
+  border-radius: 50rpx;
+  padding: 20rpx;
+  font-size: 28rpx;
+}
+
+.modal-close::after {
+  border: none;
+}

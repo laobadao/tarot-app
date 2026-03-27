@@ -1,0 +1,78 @@
+<view class="container mystic-bg">
+  <!-- 头部信息 -->
+  <view class="header">
+    <text class="spread-name">{{spread.name}}</text>
+    <text class="reading-time">{{reading.time}}</text>
+    <text wx:if="{{reading.question}}" class="question">问：{{reading.question}}</text>
+  </view>
+
+  <!-- 牌面展示 -->
+  <view class="cards-section">
+    <text class="section-title">你的牌面</text>
+    <scroll-view scroll-x class="cards-scroll">
+      <view class="cards-row">
+        <view 
+          class="card-item" 
+          wx:for="{{reading.cards}}" 
+          wx:key="index"
+          data-index="{{index}}"
+          bindtap="viewCardDetail"
+        >
+          <view class="card-mini {{item.isReversed ? 'reversed' : ''}}">
+            <text class="card-name">{{item.name}}</text>
+            <text class="card-pos">{{spread.positions[index].name}}</text>
+          </view>
+          <text class="card-status">{{item.isReversed ? '逆位' : '正位'}}</text>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+
+  <!-- AI 解读 -->
+  <view class="interpretation-section card-container">
+    <text class="section-title">塔罗解读</text>
+    
+    <view wx:if="{{loading}}" class="loading-area">
+      <view class="loading-spinner"></view>
+      <text class="loading-text">正在生成解读...</text>
+    </view>
+    
+    <view wx:else class="interpretation-content">
+      <rich-text nodes="{{interpretation}}"></rich-text>
+    </view>
+  </view>
+
+  <!-- 操作按钮 -->
+  <view class="action-buttons">
+    <button class="mystic-btn" bindtap="newReading">再次占卜</button>
+    <button class="share-btn" open-type="share">分享结果</button>
+  </view>
+
+  <!-- 牌详情弹窗 -->
+  <view wx:if="{{showCardDetail}}" class="modal-overlay" bindtap="closeCardDetail">
+    <view class="modal-content card-container" catchtap="">
+      <view class="modal-header">
+        <text class="modal-title">{{selectedCard.name}}</text>
+        <text class="modal-pos">{{selectedCard.positionName}}</text>
+      </view>
+      
+      <view class="modal-body">
+        <text class="detail-label">位置含义</text>
+        <text class="detail-text">{{selectedCard.positionMeaning}}</text>
+        
+        <text class="detail-label">牌面状态</text>
+        <text class="detail-text">{{selectedCard.isReversed ? '逆位' : '正位'}}</text>
+        
+        <text class="detail-label">关键词</text>
+        <view class="keywords">
+          <text wx:for="{{selectedCard.keywords}}" wx:key="index" class="keyword">{{item}}</text>
+        </view>
+        
+        <text class="detail-label">含义</text>
+        <text class="detail-text">{{selectedCard.isReversed ? selectedCard.reversed : selectedCard.upright}}</text>
+      </view>
+      
+      <button class="modal-close" bindtap="closeCardDetail">关闭</button>
+    </view>
+  </view>
+</view>
