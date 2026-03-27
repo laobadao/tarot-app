@@ -1,7 +1,6 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/spread/spread",
     "pages/draw/draw",
     "pages/result/result",
     "pages/history/history"

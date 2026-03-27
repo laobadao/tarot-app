@@ -17,13 +17,37 @@ export interface Interpretation {
   advice: string;
 }
 
+// 单张抽牌记录
+export interface DrawnCardRecord {
+  position: {
+    id: number;
+    name: string;
+    description: string;
+  };
+  card: {
+    id: number;
+    name: string;
+    nameEn: string;
+    arcana: 'major' | 'minor';
+    suit?: 'wands' | 'cups' | 'swords' | 'pentacles';
+    number: number;
+    keywords: string[];
+    meanings: {
+      upright: string;
+      reversed: string;
+    };
+    element?: 'fire' | 'water' | 'air' | 'earth';
+  };
+  reversed: boolean;
+}
+
 // 阅读记录
 export interface ReadingRecord {
   id: string;
   question: string;
   spreadId: string;
   spreadName: string;
-  cards: DrawnCard[];
+  cards: DrawnCardRecord[];
   interpretation?: Interpretation;
   createdAt: number;
 }
