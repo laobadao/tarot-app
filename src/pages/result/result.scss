@@ -1,0 +1,410 @@
+// 结果页面样式
+@import '../../styles/variables.scss';
+
+.result-page {
+  min-height: 100vh;
+  background: linear-gradient(180deg, $color-bg-dark 0%, $color-bg-primary 100%);
+  position: relative;
+}
+
+// 神秘背景
+.mystic-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  z-index: 0;
+
+  .stars {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: radial-gradient(2px 2px at 20px 30px, rgba(255,255,255,0.8), transparent);
+    background-size: 200px 100px;
+    animation: twinkle 4s ease-in-out infinite;
+  }
+
+  .glow {
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(212,175,55,0.1) 0%, transparent 70%);
+    transform: translateX(-50%);
+  }
+}
+
+// 内容区域
+.content {
+  position: relative;
+  z-index: 1;
+  padding: 20px;
+}
+
+// 头部
+.header {
+  text-align: center;
+  margin-bottom: 24px;
+
+  .title {
+    font-size: 28px;
+    color: $color-gold;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 8px;
+  }
+
+  .subtitle {
+    font-size: 16px;
+    color: $color-text-secondary;
+  }
+}
+
+// 问题卡片
+.question-card {
+  background: rgba(212,175,55,0.1);
+  border: 1px solid rgba(212,175,55,0.3);
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 20px;
+  text-align: center;
+
+  .question-label {
+    font-size: 12px;
+    color: $color-text-secondary;
+    margin-bottom: 8px;
+    display: block;
+  }
+
+  .question-text {
+    font-size: 16px;
+    color: $color-gold;
+    font-style: italic;
+  }
+}
+
+// 牌预览
+.cards-preview {
+  margin-bottom: 24px;
+
+  .preview-title {
+    font-size: 14px;
+    color: $color-text-secondary;
+    margin-bottom: 12px;
+    display: block;
+  }
+
+  .cards-scroll {
+    white-space: nowrap;
+  }
+
+  .cards-row {
+    display: flex;
+    gap: 12px;
+    padding-bottom: 8px;
+  }
+
+  .preview-card {
+    flex-shrink: 0;
+
+    .card-mini {
+      width: 80px;
+      height: 120px;
+      border-radius: 8px;
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      border: 1px solid rgba(255,255,255,0.2);
+
+      &.reversed {
+        transform: rotate(180deg);
+      }
+
+      .mini-name {
+        font-size: 12px;
+        color: white;
+        font-weight: 600;
+      }
+
+      .mini-position {
+        font-size: 10px;
+        color: rgba(255,255,255,0.7);
+        margin-top: 4px;
+      }
+
+      .mini-reversed {
+        font-size: 10px;
+        color: #ff6b6b;
+        margin-top: 4px;
+      }
+    }
+  }
+}
+
+// 解读区域
+.interpretation-section {
+  background: rgba(0,0,0,0.3);
+  border-radius: 16px;
+  overflow: hidden;
+  margin-bottom: 24px;
+}
+
+// 标签栏
+.tab-bar {
+  display: flex;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+
+  .tab {
+    flex: 1;
+    padding: 16px;
+    text-align: center;
+    color: $color-text-secondary;
+    font-size: 14px;
+    position: relative;
+    transition: all 0.3s;
+
+    &.active {
+      color: $color-gold;
+
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 20%;
+        right: 20%;
+        height: 2px;
+        background: $color-gold;
+      }
+    }
+  }
+}
+
+// 解读内容
+.interpretation-content {
+  padding: 20px;
+  min-height: 300px;
+}
+
+// 加载状态
+.loading {
+  text-align: center;
+  padding: 40px;
+
+  .loading-spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid rgba(255,255,255,0.1);
+    border-top-color: $color-gold;
+    border-radius: 50%;
+    margin: 0 auto 16px;
+    animation: spin 1s linear infinite;
+  }
+
+  .loading-text {
+    font-size: 16px;
+    color: $color-gold;
+    display: block;
+    margin-bottom: 8px;
+  }
+
+  .loading-sub {
+    font-size: 14px;
+    color: $color-text-secondary;
+  }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+// 错误状态
+.error {
+  text-align: center;
+  padding: 40px;
+
+  .error-icon {
+    font-size: 40px;
+    display: block;
+    margin-bottom: 16px;
+  }
+
+  .error-text {
+    font-size: 16px;
+    color: #ff6b6b;
+    margin-bottom: 16px;
+  }
+
+  .retry-btn {
+    background: $color-gold;
+    color: $color-bg-dark;
+    padding: 12px 32px;
+    border-radius: 24px;
+    font-size: 14px;
+  }
+}
+
+// 标签内容
+.tab-content {
+  .content-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 16px;
+
+    .content-icon {
+      font-size: 20px;
+    }
+
+    .content-title {
+      font-size: 18px;
+      color: $color-gold;
+      font-weight: 600;
+    }
+  }
+
+  .content-body {
+    .paragraph {
+      font-size: 15px;
+      color: $color-text-secondary;
+      line-height: 1.8;
+      margin-bottom: 16px;
+      text-align: justify;
+    }
+  }
+}
+
+// 逐牌解读
+card-interpretation {
+  background: rgba(255,255,255,0.05);
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 16px;
+
+  .card-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+
+    .card-number {
+      width: 28px;
+      height: 28px;
+      background: $color-gold;
+      color: $color-bg-dark;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    .card-info {
+      flex: 1;
+
+      .card-name {
+        font-size: 16px;
+        color: $color-text-primary;
+        font-weight: 600;
+      }
+
+      .card-position {
+        font-size: 12px;
+        color: $color-text-secondary;
+      }
+    }
+
+    .reversed-badge {
+      font-size: 12px;
+      color: #ff6b6b;
+      background: rgba(255,107,107,0.1);
+      padding: 4px 8px;
+      border-radius: 4px;
+    }
+  }
+
+  .interpretation-text {
+    font-size: 14px;
+    color: $color-text-secondary;
+    line-height: 1.6;
+  }
+}
+
+// 建议区域
+.advice-box {
+  background: rgba(212,175,55,0.1);
+  border-left: 3px solid $color-gold;
+  padding: 20px;
+  border-radius: 0 12px 12px 0;
+
+  .quote-mark {
+    font-size: 24px;
+    color: $color-gold;
+    opacity: 0.5;
+
+    &.close {
+      text-align: right;
+      display: block;
+    }
+  }
+
+  .advice-paragraph {
+    font-size: 15px;
+    color: $color-text-secondary;
+    line-height: 1.8;
+    margin-bottom: 12px;
+  }
+}
+
+// 底部操作
+.actions {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+
+  .action-btn {
+    flex: 1;
+    height: 44px;
+    border-radius: 22px;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &.share {
+      background: transparent;
+      border: 1px solid $color-gold;
+      color: $color-gold;
+    }
+
+    &.save {
+      background: rgba(212,175,55,0.2);
+      color: $color-gold;
+    }
+
+    &.new {
+      background: $color-gold;
+      color: $color-bg-dark;
+    }
+  }
+}
+
+// 底部
+.footer {
+  text-align: center;
+  padding: 20px;
+
+  .footer-text {
+    font-size: 14px;
+    color: rgba(255,255,255,0.4);
+    font-style: italic;
+  }
+}
